@@ -1,0 +1,32 @@
+_repo: Erewhon-Revisited-Twenty-Years-Later-Both-by-the-Original-Discoverer-of-the-Country-and-by-His__1971
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Butler, Samuel
+    alias: Cellarius
+    birthdate: 1835
+    deathdate: 1902
+    gutenberg_agent_id: '748'
+    url: http://www.gutenberg.org/2009/agents/748
+    wikipedia: http://en.wikipedia.org/wiki/Samuel_Butler_(1835-1902)
+description: In Erewhon, Butler's hero Higgs had escaped from Erewhon by means of
+  a balloon. In this 1901 sequel, he returns to find that he is now worshipped as
+  a god. Butler himself viewed the novel as being far more wicked than Erewhon , and
+  generations of delighted readers have agreed.
+gutenberg_issued: '1999-11-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '1971'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Utopias -- Fiction'
+- !lcsh 'Satire'
+- !lcsh 'Utopian fiction'
+- !lcc 'PR'
+- GITenberg
+title: Erewhon Revisited Twenty Years Later, Both by the Original Discoverer of the
+  Country and by His Son
+url: http://www.gutenberg.org/ebooks/1971
