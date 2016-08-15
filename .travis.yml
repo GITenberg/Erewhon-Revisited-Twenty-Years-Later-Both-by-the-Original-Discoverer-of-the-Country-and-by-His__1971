@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: K1f1Pu95H1+rtwlyZ3fk73ocJZ3gROBNqfA4ADVUEU2NIXq9PLeCV1n6PKGyTtJ70SbW+Fs72c2NyXDukLtyzTEg6Mw4B2ypCQ3Srf5iSvX5V3gZ0AeJ9yDvooeDRPVI2ZbKtnqAih+lWY73gvU3cPMqPNMswG1BBzBcIQ7Lr2Kz31r/AFVgL+cye/X55qNwUQOkD+MFv7Ycu2Aq7wr9YGbiUaw/sPbMNx62xNwbs9SjwZXLwocf8pWZiHms0vdkFMP+WVCGyyHMnB2FXQFTR1/hEbHRbwSKPXZI2Fd89HtCuHg7KRj0USPqnneJAvtRgkf5iHDhaj7YM4YeIGmPYZGDwrJJfiWR/k/ydfa16J6yK1Mj5xwnK52uZYEPhg+DOc7kdH5H+UV2xZLfP/sslzAdtt/7UjmjBsL//sNVpwq8O/O7uDtcxgy8Jw/18ZWnk31KoiSPq9klwv86xZCk7rPIqXbTMOdZ12K87JdcCp/0Hx94nOe1y7vVWyWCwDwPypbpsEjocF2733lm5hfOeyzho3SP/uiXwtA87N8pJYjFWKPEgSxHe66BQ5BiT+R9wuS3mDfrUZEqJE2RTWA9qc+IOxZHNyTa8jExWjPaR4G4wzuUyiZQeCt6IyUHxJX1heXksSQDnDlxiXkG1WLvpSiOv+Lzn5UUyHa1nR2BZvk=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/Erewhon-Revisited-Twenty-Years-Later-Both-by-the-Original-Discoverer-of-the-Country-and-by-His__1971
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
